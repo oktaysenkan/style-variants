@@ -2,6 +2,8 @@
 
 The `style-variants` is a powerful and easy-to-use solution for creating dynamic and reusable styles in your React Native applications. It helps you to build consistent UI components with predefined styles and variants that are easy to maintain and update.
 
+![CleanShot 2023-06-04 at 06 56 53](https://github.com/oktaysenkan/style-variants/assets/42527467/962ec09e-1db1-4f45-bcda-da398e6fbdc1)
+
 ## Features
 
 - 🚀 Dynamic styling created from easy-to-use style variant definitions
