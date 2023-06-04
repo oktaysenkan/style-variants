@@ -1,18 +1,20 @@
 import * as React from 'react';
+import { StyleSheet, View } from 'react-native';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'style-variants';
+import Button from './components/Button';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Button>Default Button</Button>
+      <Button size="small">Small Button</Button>
+      <Button size="large">Large Button</Button>
+      <Button variant="secondary">Secondary Button</Button>
+      <Button variant="secondary" size="small">
+        Secondary Small Button
+      </Button>
+      <Button disabled>Disabled Button</Button>
+      <Button style={styles.customButton}>Custom Button</Button>
     </View>
   );
 }
@@ -22,10 +24,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'black',
+    gap: 16,
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  customButton: {
+    backgroundColor: 'darkgreen',
+    borderColor: 'lightgreen',
   },
 });
