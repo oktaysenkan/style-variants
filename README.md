@@ -56,8 +56,8 @@ const button = sv({
 Next, we create our `Button` component using the style variants we just defined:
 
 ```jsx
-import React from 'react';
 import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import React from 'react';
 import sv, { VariantProps } from 'style-variants';
 
 type ButtonVariantsProps = VariantProps<typeof button>;
@@ -67,7 +67,61 @@ type ButtonProps = ButtonVariantsProps &
     children: string,
   };
 
-// Use the previously created style variants
+const button = sv({
+  base: {
+    borderWidth: 3,
+    borderColor: 'transparent',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 8,
+  },
+  variants: {
+    size: {
+      small: {
+        paddingVertical: 8,
+        paddingHorizontal: 16,
+      },
+      medium: {
+        paddingVertical: 12,
+        paddingHorizontal: 24,
+      },
+      large: {
+        paddingVertical: 16,
+        paddingHorizontal: 32,
+      },
+    },
+    variant: {
+      primary: {
+        backgroundColor: 'blue',
+        borderColor: 'dodgerblue',
+      },
+      secondary: {
+        backgroundColor: 'red',
+        borderColor: 'lightpink',
+      },
+    },
+    disabled: {
+      true: {
+        opacity: 0.5,
+      },
+    },
+  },
+  defaultVariants: {
+    size: 'medium',
+    variant: 'primary',
+    disabled: false,
+  },
+});
+
+const text = sv({
+  base: {
+    color: 'white',
+    fontWeight: '500',
+  },
+});
+
+const textStyles = text();
+
 const Button = ({
   style,
   children,
@@ -76,7 +130,6 @@ const Button = ({
   variant,
   ...props
 }: ButtonProps) => {
-  // Apply the style variants
   const buttonStyles = button({
     disabled,
     size,
