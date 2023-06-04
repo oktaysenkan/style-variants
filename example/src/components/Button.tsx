@@ -4,8 +4,8 @@ import sv, { VariantProps } from 'style-variants';
 
 type ButtonVariantsProps = VariantProps<typeof button>;
 
-type ButtonProps = TouchableOpacityProps &
-  ButtonVariantsProps & {
+type ButtonProps = ButtonVariantsProps &
+  TouchableOpacityProps & {
     children: string;
   };
 
@@ -64,7 +64,14 @@ const text = sv({
 
 const textStyles = text();
 
-const Button = ({ style, children, disabled, size, variant }: ButtonProps) => {
+const Button = ({
+  style,
+  children,
+  disabled,
+  size,
+  variant,
+  ...props
+}: ButtonProps) => {
   const buttonStyles = button({
     disabled,
     size,
@@ -77,6 +84,7 @@ const Button = ({ style, children, disabled, size, variant }: ButtonProps) => {
       style={buttonStyles}
       activeOpacity={0.8}
       disabled={disabled}
+      {...props}
     >
       <Text style={textStyles}>{children}</Text>
     </TouchableOpacity>
