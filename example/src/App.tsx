@@ -14,6 +14,9 @@ export default function App() {
         Secondary Small Button
       </Button>
       <Button disabled>Disabled Button</Button>
+      <Button disabled variant="secondary">
+        {`Secondary Disabled Button\n(compound variant)`}
+      </Button>
       <Button style={styles.customButton}>Custom Button</Button>
     </View>
   );

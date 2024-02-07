@@ -7,6 +7,12 @@ export type Style = ViewStyle | TextStyle | ImageStyle;
 export type VariantProps<Component extends (...args: any) => any> =
   Parameters<Component>[0];
 
+type CompoundVariant<V extends VariantShape> = {
+  [Variant in keyof V]?: StringToBoolean<keyof V[Variant]> | undefined;
+} & {
+  style: Style;
+};
+
 type VariantShape = Record<string, Record<string, Style>>;
 
 type VariantSchema<V extends VariantShape> = {
@@ -17,6 +23,7 @@ export type Config<V extends VariantShape = VariantShape> = {
   base?: Style;
   variants?: V;
   defaultVariants?: VariantSchema<V>;
+  compoundVariants?: Array<CompoundVariant<V>>;
 };
 
 type Props<V> = V extends VariantShape
@@ -30,6 +37,7 @@ export const sv =
     base,
     defaultVariants,
     variants,
+    compoundVariants = [],
   }: Config<V>) =>
   (_options?: Props<V>) => {
     const styles: Style = {};
@@ -57,6 +65,17 @@ export const sv =
         if (categoryVariants?.hasOwnProperty(String(variantSelected))) {
           Object.assign(styles, categoryVariants[String(variantSelected)]);
         }
+      }
+    });
+
+    compoundVariants.forEach((compound) => {
+      const { style, ...compoundVariantOptions } = compound;
+      if (
+        Object.entries(compoundVariantOptions).every(
+          ([key, value]) => options[key] === value
+        )
+      ) {
+        Object.assign(styles, style);
       }
     });
 

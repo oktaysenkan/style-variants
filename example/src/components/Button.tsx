@@ -43,9 +43,7 @@ const button = sv({
       },
     },
     disabled: {
-      true: {
-        opacity: 0.5,
-      },
+      true: {},
     },
   },
   defaultVariants: {
@@ -53,12 +51,29 @@ const button = sv({
     variant: 'primary',
     disabled: false,
   },
+  compoundVariants: [
+    {
+      variant: 'secondary',
+      disabled: true,
+      style: {
+        backgroundColor: 'darkred',
+      },
+    },
+    {
+      variant: 'primary',
+      disabled: true,
+      style: {
+        backgroundColor: 'darkblue',
+      },
+    },
+  ],
 });
 
 const text = sv({
   base: {
     color: 'white',
     fontWeight: '500',
+    textAlign: 'center',
   },
 });
 
