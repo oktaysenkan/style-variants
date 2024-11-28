@@ -19,8 +19,8 @@ type VariantSchema<V extends VariantShape> = {
   [Variant in keyof V]?: StringToBoolean<keyof V[Variant]> | undefined;
 };
 
-export type Config<V extends VariantShape = VariantShape> = {
-  base?: Style;
+export type Config<K extends Style, V extends VariantShape = VariantShape> = {
+  base?: K;
   variants?: V;
   defaultVariants?: VariantSchema<V>;
   compoundVariants?: Array<CompoundVariant<V>>;
@@ -33,14 +33,14 @@ type Props<V> = V extends VariantShape
   : never;
 
 export const sv =
-  <V extends VariantShape = VariantShape>({
+  <K extends Style, V extends VariantShape = VariantShape>({
     base,
     defaultVariants,
     variants,
     compoundVariants = [],
-  }: Config<V>) =>
+  }: Config<K, V>) =>
   (_options?: Props<V>) => {
-    const styles: Style = {};
+    const styles: K = Object.assign({});
 
     const options = _options || ({} as Props<V>);
 
