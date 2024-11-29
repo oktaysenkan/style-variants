@@ -1,5 +1,7 @@
 
 
+## [0.1.1](https://github.com/oktaysenkan/style-variants/compare/v0.1.0...v0.1.1) (2024-11-29)
+
 # [0.1.0](https://github.com/oktaysenkan/style-variants/compare/v0.0.1...v0.1.0) (2024-02-07)
 
 
